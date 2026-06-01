@@ -1,12 +1,12 @@
 # Memento Skill
 
+[简体中文](./README.zh-CN.md)
+
 [![Agent Skill](https://img.shields.io/badge/agent-skill-black)](./SKILL.md)
 [![Codex](https://img.shields.io/badge/Codex-ready-0f172a)](./agents/openai.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 **Controlled recall for fragmented experiments, evolving hypotheses, and high-information next steps.**
-
-**把实验碎片、证据和假设整理成可控召回的外部记忆系统。**
 
 > Don't let every note become a tattoo.
 
@@ -195,66 +195,4 @@ needed.
 You think agent memory should not just be bigger. It should be cleaner,
 layered, and harder to fool.
 
----
-
-## 中文说明
-
-**Memento Skill 是一个给 AI agent 用的外部记忆治理系统。**
-
-它适合那些实验越跑越多、结论越来越碎、旧分支越来越难读的研究项目。它不是普通实验日志，而是帮助 agent 判断：
-
-**哪些记忆现在可以影响决策，哪些应该先留在冷存储里？**
-
-灵感来自电影 *Memento*：Leonard Shelby 依赖照片、便签和纹身继续行动。但外部线索一旦被污染，就会把他带进错误现实。AI agent 也一样：上下文、实验日志、检索结果和旧总结，都可能变成“临时事实”。
-
-Memento Skill 的目标是：**不要让每一张便签都变成纹身。**
-
-### 它解决什么问题
-
-没有记忆治理时：
-
-- 旧实验会被误读成当前证据
-- 过时总结会变成新的行动前提
-- 局部异常会被编成大故事
-- 翻 archive 会吃掉整个上下文窗口
-- 下一步实验靠直觉，而不是靠信息增益
-
-### 它怎么工作
-
-它把研究记忆分层：
-
-| 层级 | 文件 | 作用 |
-| --- | --- | --- |
-| 热路径 | `CURRENT_STATE.md`, `ACTIVE_TRACKER.*`, `EVIDENCE_LOG.md` | 新 agent 首先读取的当前状态 |
-| 完整账本 | `runs.csv`, `contrasts.csv`, `hypotheses.md` | 完整事实、对照和信念更新 |
-| 冷记忆 | `archive/`, `ARCHIVE_INDEX.md`, archive cards | 不默认读，但可被召回的旧分支 |
-| 召回审计 | `RECALL_NOTES/` | 记录为什么召回、读了什么、是否改变计划 |
-
-### 快速开始
-
-```bash
-npx skills add waterdrop26651/Memento-skill -g -a codex -y
-```
-
-或者手动安装：
-
-```bash
-mkdir -p ~/.codex/skills
-git clone https://github.com/waterdrop26651/Memento-skill.git ~/.codex/skills/memento-skill
-```
-
-重启 Codex 后使用：
-
-```text
-$memento-skill 帮我把这个实验项目整理成 runs.csv、contrasts.csv、hypotheses.md，并给出下一组最有信息量的对照。
-```
-
-### 适合你，如果
-
-- 你有很多实验、消融、控制组、随机种子和旧分支。
-- 新 agent 每次接手都要重新读很长历史。
-- 你希望先写预测，再看结果，再更新假设。
-- 你不想让 archive 默认污染当前上下文。
-- 你希望下一步实验按信息增益排序。
-
-短台词来源：*Memento* (2000), see [IMDb Quotes](https://www.imdb.com/title/tt0209144/quotes/) and [Wikiquote](https://en.wikiquote.org/wiki/Memento_%28film%29).
+Short quote sources: *Memento* (2000), see [IMDb Quotes](https://www.imdb.com/title/tt0209144/quotes/) and [Wikiquote](https://en.wikiquote.org/wiki/Memento_%28film%29).
