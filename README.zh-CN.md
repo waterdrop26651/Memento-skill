@@ -3,6 +3,7 @@
 [English](./README.md)
 
 [![Skill](https://img.shields.io/badge/SKILL.md-agent--skill-111111)](./SKILL.md)
+[![Validate](https://github.com/waterdrop26651/Memento-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/waterdrop26651/Memento-skill/actions/workflows/validate.yml)
 [![Codex](https://img.shields.io/badge/Codex-ready-0A7AFF)](https://github.com/waterdrop26651/Memento-skill)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-6B4EFF)](https://github.com/waterdrop26651/Memento-skill)
 [![No secrets](https://img.shields.io/badge/secrets-not%20required-2EA44F)](./SKILL.md)
