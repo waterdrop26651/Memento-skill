@@ -37,4 +37,6 @@ jobs:
       - name: Check for accidental secrets
         run: |
           ! grep -RInE 'ghp_[A-Za-z0-9_]{30,}|github_pat_[A-Za-z0-9_]+|OPENAI_API_KEY|ANTHROPIC_API_KEY' \
-            --exclude-dir=.git .
+            --exclude-dir=.git \
+            --exclude=validate.yml \
+            .
