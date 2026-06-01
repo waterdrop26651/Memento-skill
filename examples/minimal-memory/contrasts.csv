@@ -1,0 +1,2 @@
+contrast_id,question_id,hypothesis_id,status,priority,baseline_runs,treatment_runs,control_runs,changed_axis,controlled_axes,prediction_direction,predicted_min_delta,predicted_reason,actual_delta,actual_result,info_gain,belief_update,next_action,risk,decision
+C01,Q01,H01,planned,P0,A7,A8,,reranking,dataset;split;scoring_script;seed,increase,primary_metric +0.02,"Reranking should improve precision if the old failure was data-related",,,high,,"Run same-snapshot controlled contrast",moderate,planned

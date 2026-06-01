@@ -1,0 +1,35 @@
+name: Memory layout showcase
+description: Share a real Memento Skill memory layout and the contrast it helped choose.
+title: "Showcase: "
+labels: ["showcase"]
+body:
+  - type: textarea
+    id: project
+    attributes:
+      label: Project context
+      description: What kind of research or experiment program used Memento Skill?
+      placeholder: "Example: retrieval experiments, model ablations, product research..."
+    validations:
+      required: true
+  - type: textarea
+    id: hot-path
+    attributes:
+      label: Hot path
+      description: Paste or summarize CURRENT_STATE.md / ACTIVE_TRACKER.csv.
+    validations:
+      required: true
+  - type: textarea
+    id: archive
+    attributes:
+      label: Archived fragments
+      description: What old notes or runs were demoted out of the default path?
+    validations:
+      required: false
+  - type: textarea
+    id: contrast
+    attributes:
+      label: Next contrast
+      description: What next high-information contrast did the skill help choose?
+    validations:
+      required: true
+

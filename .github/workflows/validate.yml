@@ -1,0 +1,39 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile validator
+        run: python -m py_compile scripts/validate_tracker.py
+
+      - name: Validate example tracker
+        run: python scripts/validate_tracker.py examples/minimal-memory
+
+      - name: Parse OpenAI agent metadata
+        run: python - <<'PY'
+          text = open("agents/openai.yaml", "r", encoding="utf-8").read()
+          required = [
+              'display_name: "Memento Skill"',
+              'short_description:',
+              'default_prompt:',
+          ]
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f"missing metadata fields: {missing}")
+          PY
+
+      - name: Check for accidental secrets
+        run: |
+          ! grep -RInE 'ghp_[A-Za-z0-9_]{30,}|github_pat_[A-Za-z0-9_]+|OPENAI_API_KEY|ANTHROPIC_API_KEY' \
+            --exclude-dir=.git .

@@ -1,0 +1,3 @@
+run_id,status,date,run_dir,config_path,question_id,hypothesis_id,contrast_id,role,changed_axis,model_family,dataset,split,layer_or_stage,capacity,sparsity_or_topk,seed,steps,primary_metric,secondary_metric,diagnostic_metric_1,diagnostic_metric_2,quality_flags,notes
+A7,completed,2026-06-01,exp/A7,configs/A7.yaml,Q01,H01,C01,baseline,retrieval,rag,current-snapshot,val,retrieval,default,default,0,1,0.71,0.62,0.11,0.03,clean,"Retrieval-only improved quality versus prior baseline"
+A8,completed,2026-06-01,exp/A8,configs/A8.yaml,Q01,H01,C01,treatment,reranking,rag,current-snapshot,val,retrieval,default,default,0,1,0.69,0.61,0.08,0.04,confounded,"Reranking failed but should be repeated with same-snapshot controls"

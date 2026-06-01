@@ -1,0 +1,4 @@
+entry_id,kind,status,question_id,hypothesis_id,source_id,role,current_gradient,why_it_still_matters,next_action
+A7,run,active,Q01,H01,A7,baseline,high,Retrieval-only is the current clean reference,Use as baseline arm in clean contrast
+A8,run,active,Q01,H01,A8,treatment,high,Reranking failed but controls are unclear,Repeat with clean data snapshot controls
+old-rerank-note,note,reference,Q01,H01,old-rerank-note,archive_pointer,low,Older reranking note predates data fix,Do not use as current fact unless recalled explicitly
