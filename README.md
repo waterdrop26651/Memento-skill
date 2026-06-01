@@ -3,6 +3,7 @@
 [简体中文](./README.zh-CN.md)
 
 [![Skill](https://img.shields.io/badge/SKILL.md-agent--skill-111111)](./SKILL.md)
+[![skills.sh](https://skills.sh/b/waterdrop26651/Memento-skill)](https://skills.sh/waterdrop26651/Memento-skill)
 [![Validate](https://github.com/waterdrop26651/Memento-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/waterdrop26651/Memento-skill/actions/workflows/validate.yml)
 [![Codex](https://img.shields.io/badge/Codex-ready-0A7AFF)](https://github.com/waterdrop26651/Memento-skill)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-6B4EFF)](https://github.com/waterdrop26651/Memento-skill)
@@ -94,6 +95,10 @@ RECALL_NOTES/          # recall audit trail
 
 ```bash
 npx skills add waterdrop26651/Memento-skill -g -a codex -y
+```
+
+```bash
+npx skillsgate add waterdrop26651/Memento-skill
 ```
 
 ### Manual Codex Install

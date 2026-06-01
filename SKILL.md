@@ -1,6 +1,23 @@
 ---
 name: memento-skill
 description: Use this skill to turn fragmented experiments, evidence, notes, and evolving hypotheses into a controlled external memory system. It helps agents separate factual ledgers from belief updates, keep only decision-relevant evidence on the hot path, recall archives only with explicit triggers, and choose the next high-information experiment or contrast.
+metadata:
+  author: waterdrop26651
+  license: MIT
+  version: 1.0.0
+  categories:
+    - research
+    - agent-memory
+    - experiment-tracking
+  tags:
+    - agent-skills
+    - skill-md
+    - codex
+    - claude-code
+    - external-memory
+    - ai-memory
+    - hypotheses
+    - experiments
 ---
 
 # Memento Skill
