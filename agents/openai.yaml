@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memento Skill"
+  short_description: "Controlled recall for fragmented experiments and hypotheses"
+  default_prompt: "Use $memento-skill to create or improve controlled research memory: runs.csv, contrasts.csv, hypotheses.md, active evidence, archive recall, and the next highest-information contrast."
