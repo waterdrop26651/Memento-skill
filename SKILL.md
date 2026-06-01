@@ -1,24 +1,17 @@
 ---
 name: memento-skill
-description: Use this skill to turn fragmented experiments, evidence, notes, and evolving hypotheses into a controlled external memory system. It helps agents separate factual ledgers from belief updates, keep only decision-relevant evidence on the hot path, recall archives only with explicit triggers, and choose the next high-information experiment or contrast.
+description: Controlled recall for research memory, experiment tracking, evidence ledgers, hypothesis updates, archival recall, and next high-information experimental contrasts.
 license: MIT
-category: research
-tags:
-  - research
-  - agent-memory
-  - experiment-tracking
-  - external-memory
-  - ai-memory
-  - hypotheses
-  - experiments
-  - codex
-  - claude-code
-  - skill-md
+category: research-data-analysis
+section: research-data-analysis
+collection: community
+short_description: Controlled recall for research memory and experiment tracking.
 metadata:
   author: waterdrop26651
   license: MIT
   version: 1.0.0
   categories:
+    - research-data-analysis
     - research
     - agent-memory
     - experiment-tracking
