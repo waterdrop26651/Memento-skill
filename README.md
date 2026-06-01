@@ -40,11 +40,22 @@ RECALL_NOTES/          # recall audit trail
 
 ## Install
 
+### Give This To Your Agent
+
+```text
+Install this skill from https://github.com/waterdrop26651/Memento-skill and enable it for future research-memory and experiment-tracking work.
+```
+
+Your agent should clone or install the repository into its skills directory,
+then use `$memento-skill` when a project needs controlled recall.
+
+### CLI
+
 ```bash
 npx skills add waterdrop26651/Memento-skill -g -a codex -y
 ```
 
-Manual Codex install:
+### Manual Codex Install
 
 ```bash
 mkdir -p ~/.codex/skills

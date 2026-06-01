@@ -38,11 +38,23 @@ RECALL_NOTES/          # 召回审计记录
 
 ## 安装
 
+### 给 agent 看的
+
+把这句话发给你的 agent：
+
+```text
+请从 https://github.com/waterdrop26651/Memento-skill 安装这个 skill，并在之后的研究记忆和实验追踪任务中启用它。
+```
+
+agent 应该会自动把仓库克隆或安装到 skills 目录，然后在需要受控召回时使用 `$memento-skill`。
+
+### CLI
+
 ```bash
 npx skills add waterdrop26651/Memento-skill -g -a codex -y
 ```
 
-手动安装到 Codex：
+### 手动安装到 Codex
 
 ```bash
 mkdir -p ~/.codex/skills
