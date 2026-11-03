@@ -9,6 +9,7 @@ See [messy-notes.md](./messy-notes.md).
 
 ## Output
 
+- [ANCHOR.md](./ANCHOR.md): the direction (core question, method, main table)
 - [CURRENT_STATE.md](./CURRENT_STATE.md): short hot path for the next agent
 - [ACTIVE_TRACKER.csv](./ACTIVE_TRACKER.csv): decision-relevant evidence only
 - [runs.csv](./runs.csv): factual ledger

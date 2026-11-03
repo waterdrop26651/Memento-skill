@@ -1,20 +1,21 @@
 ---
 name: memento-skill
-description: Controlled recall for research memory, experiment tracking, evidence ledgers, hypothesis updates, archival recall, and next high-information experimental contrasts.
+description: Controlled recall and anchored direction for research agents. Use it for research memory, experiment tracking, evidence ledgers, hypothesis updates, archival recall, and picking the next high-information contrast. Use it also to keep an agent's experiments tied to the project's core question and method, with a main table as their metric. Use it whenever a long research project needs a tracker or a handoff, whenever the agent keeps drifting into side experiments or invented framings, and whenever the user has to correct the same thing twice or asks to converge, focus, or build a main table.
 license: MIT
 category: research-data-analysis
 section: research-data-analysis
 collection: community
-short_description: Controlled recall for research memory and experiment tracking.
+short_description: Controlled recall and anchored direction for research memory and experiment tracking.
 metadata:
   author: waterdrop26651
   license: MIT
-  version: 1.0.0
+  version: 1.1.0
   categories:
     - research-data-analysis
     - research
     - agent-memory
     - experiment-tracking
+    - research-direction
   tags:
     - agent-skills
     - skill-md
@@ -44,6 +45,12 @@ Default stance: optimize for fast continuation, not exhaustive replay. A good
 tracker lets a fresh agent recover the current decision surface quickly without
 re-reading the whole experimental past.
 
+Memory without a compass still drifts. The anchor layer names the project's core
+question and core method, and makes every experiment justify itself against them.
+A main table, the tables and figures the final report must contain, measures the
+question and method. It is a means, not the goal, and it follows the final system
+under study.
+
 ## Use this skill when
 
 - The user wants an experiment tracker, ablation plan, run table, or research log.
@@ -52,9 +59,19 @@ re-reading the whole experimental past.
 - The user wants to compare predictions against outcomes and update beliefs systematically.
 - The user wants to prevent old context, archived findings, or memory fragments
   from becoming accidental instructions.
+- The agent keeps proposing side experiments, invented metrics, or framings that
+  peers do not use, or the user has corrected the same drift more than once.
+- The user asks to converge, to focus on the main line, or to define a main table
+  of results.
+- Scarce resources (paid judges, shared GPUs, raters) must go only to the work
+  that matters.
 
 ## Core rules
 
+- Anchor before memory: the core question and method decide what counts as
+  gradient. The main table measures them; it is not the goal.
+- Answer the user's doubts with the existing design and evidence before
+  proposing runs.
 - Maintain both views at once: the global landscape and the next local gradient.
 - Separate active decision support from archival completeness.
 - Add a contrast before launching a run.
@@ -75,10 +92,52 @@ re-reading the whole experimental past.
 
 If these files do not exist, create them. Use the starter schemas in [references/TEMPLATES.md](references/TEMPLATES.md).
 
+## Anchor layer
+
+Add `ANCHOR.md` when the project has a main line to converge on, and always once
+the user has had to correct the agent's direction. It holds:
+
+- the core question;
+- the core method;
+- the claims;
+- the final system;
+- the main table and its cell status;
+- peer grounding;
+- terms the user has distinguished;
+- scarce-resource rules;
+- an off-table list;
+- a corrections log.
+
+Derive a short gate (at most about eight lines) from it. Inject the gate every
+turn where the harness allows; otherwise reread the anchor before any proposal.
+
+Rules:
+
+- Justify work by the part of the question it answers and the method component
+  it tests, then by its table cell. A new cell is a new experiment and needs
+  the user's request. Work that maps to nothing gets one line under Off-table,
+  not a pitch.
+- When the user raises a doubt, ask three questions first: what the design
+  already holds constant, what each metric can and cannot be caused by, and how
+  the claim can be worded. Propose a run only if the user asks or reasoning
+  cannot settle it.
+- Follow peer work for metrics, baselines and benchmarks.
+- Spend scarce resources only on cells: smoke first, once per cell per final
+  system.
+- Keep user-defined terms distinct, and answer capability questions literally.
+- Turn every correction into a rule in the anchor and the gate. If a rule was
+  kept in letter but not intent, rewrite it around the intent.
+- When the final system changes, mark cells `interim` and stop spending on the
+  superseded one.
+
+Details, hooks and a worked example: [references/ANCHOR.md](references/ANCHOR.md).
+
 ## Preferred layered layout
 
 For medium or large research programs, prefer this layout:
 
+- `ANCHOR.md`: the direction (core question, core method, main table). Read
+  first, changed rarely.
 - `CURRENT_STATE.md`: the minimum entry point for a fresh agent. Keep it short.
 - `ACTIVE_TRACKER.md` or `ACTIVE_TRACKER.csv`: only experiments that still have
   decision gradient for the current roadmap.
@@ -95,6 +154,7 @@ For medium or large research programs, prefer this layout:
 
 Think of these as memory layers:
 
+- anchor: `ANCHOR.md` and its gate
 - hot path: `CURRENT_STATE.md`, `ACTIVE_TRACKER.*`, `EVIDENCE_LOG.md`
 - full ledger: `runs.csv`, `contrasts.csv`, `hypotheses.md`
 - cold memory: `archive/`, `ARCHIVE_INDEX.md`, archive cards, `RECALL_NOTES/`
@@ -142,15 +202,19 @@ Recommended recall budget:
 
 ## Workflow
 
-1. Read the smallest authoritative entry point first: prefer `CURRENT_STATE.md`,
-   then `ACTIVE_TRACKER.*`, then `EVIDENCE_LOG.md`, then the full ledger only as
-   needed.
-2. Identify the active questions, hypotheses, and unresolved decision points.
+1. Read the smallest authoritative entry point first: `ANCHOR.md` if it exists,
+   then `CURRENT_STATE.md`, then `ACTIVE_TRACKER.*`, then `EVIDENCE_LOG.md`, then
+   the full ledger only as needed.
+2. Identify the active questions, hypotheses, and unresolved decision points, and
+   map each one to the anchor. A question that maps to nothing is off-table.
 3. Mark old experiments as one of:
    - `active`: still changes current decisions
    - `reference`: useful supporting evidence but not part of the default working set
    - `archived`: historical only unless a specific question reopens
-4. Propose candidate contrasts and rank them by expected information gain.
+4. Propose candidate contrasts. Keep only those with an anchor reference and a
+   table cell, then rank them by expected information gain about the anchor.
+   When the user raised a doubt, answer it from the existing design first, and
+   add a contrast only if the user asks for a run.
 5. Write the prediction before execution: direction, minimum meaningful delta,
    and reason.
 6. Record observed facts in `runs.csv`, not interpretation.
@@ -163,8 +227,11 @@ Recommended recall budget:
 10. Promote any recalled high-value finding into the hot path instead of keeping
     it archive-only.
 11. Refresh `CURRENT_STATE.md` and `ACTIVE_TRACKER.*` so a new agent can resume
-    without replaying the whole ledger.
-12. If tracker files exist, run
+    without replaying the whole ledger. Update the main-table cell status in
+    `ANCHOR.md`. If the final system changed, mark the old cells `interim`.
+12. If the user corrected the agent, record the correction in `ANCHOR.md`, turn
+    it into a rule, and regenerate the gate.
+13. If tracker files exist, run
     `python <path-to-this-skill>/scripts/validate_tracker.py <tracker_dir>`
     after editing them. Resolve the script path relative to this `SKILL.md`.
 
@@ -172,6 +239,8 @@ Recommended recall budget:
 
 When using this skill, produce:
 - A concise landscape summary
+- For each proposed contrast, its anchor reference (question part, method
+  component) and its table cell
 - The most informative next contrasts, ranked
 - The control requirements for each contrast
 - The predicted gradient or decision impact for each contrast
@@ -180,8 +249,14 @@ When using this skill, produce:
   what was archived out of the default reading path
 - When archive recall happened: why recall was triggered, what was read, what
   reusable asset was found, and whether it changed the plan
+- When the user corrected the agent: the rule added to `ANCHOR.md` and the gate
 
 ## Quality bar
+
+- `ANCHOR.md` fits on one page and names the final system. Every planned
+  contrast in a project with an anchor fills `anchor_ref` and `table_cell`.
+- No doubt from the user turned into an experiment without first being answered
+  from the existing design and evidence.
 
 - `runs.csv` should store facts and quality flags, not conclusions.
 - `contrasts.csv` should make it obvious what changed, what stayed controlled, what was predicted, and what was learned.

@@ -67,6 +67,7 @@ tracker.
 - Archives stale branches without deleting them.
 - Recalls old memory only when there is a reason.
 - Ranks the next experiment by information gain.
+- Anchors the work on the core question and method, so the agent stops drifting.
 
 ## Use It For
 
@@ -74,10 +75,33 @@ tracker.
 - Agent handoff across sessions without full replay.
 - Hypothesis tracking where old evidence can poison new decisions.
 - Planning the next ablation, control, or contrast by information gain.
+- Agents that keep drifting into side experiments, or users who have to correct
+  the same thing twice.
+
+## Anchor Layer
+
+Memory without a compass still drifts. `ANCHOR.md` names the core question and
+the core method. It also lists the final system the evidence must be measured on,
+and a main table: the tables and figures the final report must contain.
+
+The table measures the question and method. It is not the goal, and it follows
+the final system.
+
+A short gate derived from the anchor is injected every turn where the harness
+allows it (a Claude Code hook, or `AGENTS.md`):
+
+- Every run or proposal names the part of the question it answers, the method
+  component it tests and its table cell.
+- Doubts are answered from the existing design before anyone proposes a run.
+- Terms the user distinguishes stay distinct.
+- Every correction becomes a rule.
+
+See [references/ANCHOR.md](./references/ANCHOR.md).
 
 ## Memory Layout
 
 ```text
+ANCHOR.md              # direction: core question, method, main table
 CURRENT_STATE.md       # current actionable reality
 ACTIVE_TRACKER.csv     # evidence with live decision gradient
 EVIDENCE_LOG.md        # compressed support for current beliefs
@@ -134,6 +158,7 @@ python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
 - [agents/openai.yaml](./agents/openai.yaml)
 - [references/REFERENCE.md](./references/REFERENCE.md)
 - [references/TEMPLATES.md](./references/TEMPLATES.md)
+- [references/ANCHOR.md](./references/ANCHOR.md)
 - [scripts/validate_tracker.py](./scripts/validate_tracker.py)
 
 ## Share A Memory Layout

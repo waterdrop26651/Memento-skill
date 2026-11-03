@@ -5,7 +5,84 @@ and config axes to the project.
 
 For small projects, the three core files may be enough. For medium or large
 projects, add the layered files below so a fresh agent does not need to read the
-full ledger by default.
+full ledger by default. When the agent keeps drifting from the project's main
+line, add `ANCHOR.md` and its gate (see [ANCHOR.md](ANCHOR.md)).
+
+## `ANCHOR.md`
+
+```md
+# Anchor
+
+Last changed: YYYY-MM-DD (by the user's direction, not by routine progress)
+
+## Core question
+
+- ...
+
+## Core method
+
+- Mechanism: ...
+- Components: ...
+- Prerequisites: ...
+
+## Claims
+
+- C1: ... (evidence: H01, Table A cells ...)
+
+## Final system
+
+- ... (when this changes, every cell below becomes `interim`)
+
+## Main table
+
+| table / figure | rows | columns or metric | cell status |
+|---|---|---|---|
+| Table A | ... | ... | pending / interim / final |
+
+## Peer grounding
+
+- Metrics and baselines follow: ...
+
+## Terms
+
+- X is not Y: ...
+
+## Scarce resources
+
+- ...: only for cells ..., smoke first, once per cell per final system
+
+## Off-table
+
+- ... (one line each; not pitched)
+
+## Corrections
+
+- YYYY-MM-DD: correction -> rule (where it now lives)
+```
+
+Rules:
+
+- Keep it to one page. It states direction, not progress.
+- Change it only when the user changes direction or corrects the agent.
+- Every claim points to its hypotheses and cells.
+
+## Anchor gate (`.claude/anchor_gate.txt` or the always-loaded instructions file)
+
+```text
+Anchor gate (from ANCHOR.md, YYYY-MM-DD):
+1. Core question: ... Core method: ... The main table measures them; it follows the final system: ...
+2. Before any run or proposal, name the part of the question, the method component and the table cell. If none, do not do it or pitch it; one line under Off-table at most.
+3. When the user raises a doubt, answer from the existing design and evidence first: what is held constant, what a metric can be caused by, how to word the claim. Propose runs only if the user asks.
+4. Methods and metrics follow: ...
+5. Scarce resources: ... only for ..., smoke first, once per cell per final system.
+6. Terms: ... is not ...
+7. Conclusion first, plain language, short.
+```
+
+Rules:
+
+- At most about eight lines; it is read every turn.
+- Regenerate it whenever `ANCHOR.md` changes.
 
 ## `CURRENT_STATE.md`
 
@@ -192,6 +269,15 @@ C01,Q01,H01,recorded,P0,v1_baseline,v1_capacity8192,,capacity,dataset;split;laye
 C02,Q01,H01,planned,P1,v1_baseline,v1_new_loss,,loss_family,dataset;split;layer_or_stage;capacity;sparsity_or_topk;seed;steps,increase,primary_metric +0.01,Loss change should improve representation quality without changing capacity.,,,medium,,Prepare config and matching seed plan.,moderate,planned
 ```
 
+Optional anchor columns (when the project has an `ANCHOR.md`):
+
+```csv
+...,decision,anchor_ref,table_cell
+```
+
+- `anchor_ref`: which part of the core question or method the contrast tests.
+- `table_cell`: the main-table cell it fills.
+
 Rules:
 
 - Create the row before the run when possible.
@@ -265,10 +351,11 @@ Use this when shrinking an existing tracker:
 
 ## New default read order
 
-1. `CURRENT_STATE.md`
-2. `ACTIVE_TRACKER.*`
-3. `EVIDENCE_LOG.md`
-4. full ledger only if needed
+1. `ANCHOR.md` (if the project has one)
+2. `CURRENT_STATE.md`
+3. `ACTIVE_TRACKER.*`
+4. `EVIDENCE_LOG.md`
+5. full ledger only if needed
 ```
 
 ## Archive-recall summary template

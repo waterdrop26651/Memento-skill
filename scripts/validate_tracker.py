@@ -22,6 +22,9 @@ RUN_REQUIRED_COLUMNS = {
     "notes",
 }
 
+ANCHOR_REQUIRED_MARKERS = ("## Core question", "## Core method", "## Final system", "## Main table")
+ANCHOR_CONTRAST_COLUMNS = ("anchor_ref", "table_cell")
+
 CONTRAST_REQUIRED_COLUMNS = {
     "contrast_id",
     "question_id",
@@ -101,6 +104,9 @@ def validate_contrasts(
         for key in ("prediction_direction", "predicted_min_delta", "predicted_reason"):
             if is_planned and not row.get(key, "").strip():
                 error(f"contrasts.csv:{index} missing {key} for planned contrast {contrast_id}", errors)
+        for key in ANCHOR_CONTRAST_COLUMNS:
+            if is_planned and key in row and not (row.get(key) or "").strip():
+                error(f"contrasts.csv:{index} missing {key} for planned contrast {contrast_id}", errors)
 
         for field in ("baseline_runs", "treatment_runs", "control_runs"):
             for run_id in split_ids(row.get(field, "")):
@@ -120,6 +126,13 @@ def validate_hypotheses(path: Path, errors: list[str]) -> None:
     for marker in ("Current belief:", "Evidence:", "Risk:", "Next most informative contrast:", "Update rule:"):
         if marker not in text:
             error(f"hypotheses.md missing marker: {marker}", errors)
+
+
+def validate_anchor(path: Path, errors: list[str]) -> None:
+    text = path.read_text(encoding="utf-8")
+    for marker in ANCHOR_REQUIRED_MARKERS:
+        if marker not in text:
+            error(f"ANCHOR.md missing section: {marker}", errors)
 
 
 def main() -> int:
@@ -150,6 +163,8 @@ def main() -> int:
         run_ids = validate_runs(run_rows, errors)
         validate_contrasts(contrast_rows, run_ids, errors)
         validate_hypotheses(root / "hypotheses.md", errors)
+        if (root / "ANCHOR.md").exists():
+            validate_anchor(root / "ANCHOR.md", errors)
 
     if errors:
         print("\n".join(errors), file=sys.stderr)

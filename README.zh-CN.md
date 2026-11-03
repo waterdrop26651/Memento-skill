@@ -61,6 +61,7 @@ ACTIVE_TRACKER.csv  -> 只保留仍影响下一步决策的证据
 - 归档旧分支，但不删除。
 - 只有触发理由时才召回旧记忆。
 - 按信息增益排序下一步实验。
+- 把工作锚定在核心问题和核心方法上，让 agent 不再跑偏。
 
 ## 适合用在
 
@@ -68,10 +69,32 @@ ACTIVE_TRACKER.csv  -> 只保留仍影响下一步决策的证据
 - 跨会话 agent handoff，但不想每次完整重放上下文。
 - 需要追踪假设更新，而不是只堆日志的项目。
 - 需要按信息增益选择下一组 ablation、control 或 contrast。
+- agent 总在加旁支实验、自创说法，或者同一件事要反复纠正的项目。
+
+## 锚点层
+
+光有记忆没有方向，agent 照样会跑偏。`ANCHOR.md` 写清楚以下几件事：
+
+- 核心问题；
+- 核心方法；
+- 证据要在哪个“最终系统”上测；
+- 主表，也就是最终报告必须有的表和图。
+
+主表是核心问题和方法的指标，不是目的，并且随最终系统更新。
+
+从锚点提炼一段不超过八行的门槛。只要运行环境支持（Claude Code 的钩子，或 `AGENTS.md`），就每轮注入，要求：
+
+- 每个实验或提议先说清回答问题的哪一点、检验方法的哪一部分、落在哪一格；
+- 用户提出疑问时，先用现有设计和证据回答，再谈实验；
+- 用户区分过的术语不混用；
+- 每次纠正都沉淀成一条规则。
+
+详见 [references/ANCHOR.md](./references/ANCHOR.md)。
 
 ## 记忆结构
 
 ```text
+ANCHOR.md              # 方向：核心问题、核心方法、主表
 CURRENT_STATE.md       # 当前可行动现实
 ACTIVE_TRACKER.csv     # 仍有决策梯度的证据
 EVIDENCE_LOG.md        # 当前信念的压缩证据
@@ -128,6 +151,7 @@ python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
 - [agents/openai.yaml](./agents/openai.yaml)
 - [references/REFERENCE.md](./references/REFERENCE.md)
 - [references/TEMPLATES.md](./references/TEMPLATES.md)
+- [references/ANCHOR.md](./references/ANCHOR.md)
 - [scripts/validate_tracker.py](./scripts/validate_tracker.py)
 
 ## 分享你的记忆布局
