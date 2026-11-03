@@ -1,5 +1,5 @@
 name: Memory layout showcase
-description: Share a real Memento Skill memory layout and the contrast it helped choose.
+description: Share a real Memento memory layout and the contrast it helped choose.
 title: "Showcase: "
 labels: ["showcase"]
 body:
@@ -7,7 +7,7 @@ body:
     id: project
     attributes:
       label: Project context
-      description: What kind of research or experiment program used Memento Skill?
+      description: What kind of research or experiment program used Memento?
       placeholder: "Example: retrieval experiments, model ablations, product research..."
     validations:
       required: true

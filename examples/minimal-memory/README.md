@@ -1,6 +1,6 @@
 # Minimal Memento Demo
 
-This tiny example shows how Memento Skill turns a messy research note into a
+This tiny example shows how Memento turns a messy research note into a
 controlled memory layout.
 
 ## Input

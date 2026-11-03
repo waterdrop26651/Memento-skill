@@ -1,4 +1,4 @@
-# Memento Skill
+# Memento
 
 [English](./README.md)
 
@@ -18,14 +18,14 @@
 
 **给容易遗忘、过拟合旧笔记、被碎片污染判断的 agent 用的受控召回系统。**
 
-Memento Skill 把零散实验、笔记、证据和假设整理成分层外部记忆，让 agent 能继续推进项目，而不是把每个旧碎片都误当成当前事实。
+Memento 把零散实验、笔记、证据和假设整理成分层外部记忆，让 agent 能继续推进项目，而不是把每个旧碎片都误当成当前事实。
 
 别让每一张便签都变成纹身。
 
 ## 复制给你的 agent
 
 ```text
-请安装 https://github.com/waterdrop26651/Memento-skill，并在之后的研究记忆、实验追踪和假设更新任务中启用 $memento-skill。
+请安装 https://github.com/waterdrop26651/Memento-skill，并在之后的研究记忆、实验追踪和假设更新任务中启用 $memento。
 ```
 
 多数用户只需要这一句：让 agent 自己把仓库克隆或安装到 skills 目录，必要时重启 agent 生效。
@@ -122,19 +122,19 @@ npx skillsgate add waterdrop26651/Memento-skill
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/waterdrop26651/Memento-skill.git ~/.codex/skills/memento-skill
+git clone https://github.com/waterdrop26651/Memento-skill.git ~/.codex/skills/memento
 ```
 
 然后使用：
 
 ```text
-$memento-skill 帮我为这个项目建立受控记忆 tracker，并按信息增益排序下一组实验对照。
+$memento 帮我为这个项目建立受控记忆 tracker，并按信息增益排序下一组实验对照。
 ```
 
 ## 校验
 
 ```bash
-python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
+python ~/.codex/skills/memento/scripts/validate_tracker.py <tracker_dir>
 ```
 
 ## 可信边界
@@ -156,7 +156,7 @@ python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
 
 ## 分享你的记忆布局
 
-如果你在真实项目里用了 Memento Skill，可以开一个 showcase issue，放出热路径、被归档的碎片，以及它帮你选出的下一组 contrast。好的案例会让这个 skill 变得更锋利。
+如果你在真实项目里用了 Memento，可以开一个 showcase issue，放出热路径、被归档的碎片，以及它帮你选出的下一组 contrast。好的案例会让这个 skill 变得更锋利。
 
 头图为原创生成资产，不是电影剧照。短台词来源：*Memento* (2000)，见
 [IMDb Quotes](https://www.imdb.com/title/tt0209144/quotes/) 和

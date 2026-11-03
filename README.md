@@ -1,4 +1,4 @@
-# Memento Skill
+# Memento
 
 [简体中文](./README.zh-CN.md)
 
@@ -18,7 +18,7 @@
 
 **Controlled recall for agents that forget, overfit, and hallucinate from old notes.**
 
-Memento Skill turns scattered experiment runs, notes, evidence, and hypotheses
+Memento turns scattered experiment runs, notes, evidence, and hypotheses
 into a layered external memory system, so an agent can continue a project
 without treating every old fragment as current truth.
 
@@ -27,7 +27,7 @@ Don't let every note become a tattoo.
 ## Copy This To Your Agent
 
 ```text
-Install https://github.com/waterdrop26651/Memento-skill and enable $memento-skill for future research-memory, experiment-tracking, and hypothesis-update work.
+Install https://github.com/waterdrop26651/Memento-skill and enable $memento for future research-memory, experiment-tracking, and hypothesis-update work.
 ```
 
 That is the preferred install path for most users: let the agent clone or install
@@ -129,19 +129,19 @@ npx skillsgate add waterdrop26651/Memento-skill
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/waterdrop26651/Memento-skill.git ~/.codex/skills/memento-skill
+git clone https://github.com/waterdrop26651/Memento-skill.git ~/.codex/skills/memento
 ```
 
 Then ask:
 
 ```text
-$memento-skill Build a controlled memory tracker for this project and rank the next highest-information contrasts.
+$memento Build a controlled memory tracker for this project and rank the next highest-information contrasts.
 ```
 
 ## Validate
 
 ```bash
-python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
+python ~/.codex/skills/memento/scripts/validate_tracker.py <tracker_dir>
 ```
 
 ## Trust
@@ -163,7 +163,7 @@ python ~/.codex/skills/memento-skill/scripts/validate_tracker.py <tracker_dir>
 
 ## Share A Memory Layout
 
-Using Memento Skill on a real project? Open a showcase issue with the hot path,
+Using Memento on a real project? Open a showcase issue with the hot path,
 the archived fragments, and the contrast it helped choose. Good examples make
 the skill sharper for everyone.
 

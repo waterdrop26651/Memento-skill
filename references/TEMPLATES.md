@@ -1,4 +1,4 @@
-# Memento Skill Templates
+# Memento Templates
 
 Use these as starter files for controlled research memory. Adapt metric columns
 and config axes to the project.

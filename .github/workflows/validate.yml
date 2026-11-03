@@ -25,7 +25,7 @@ jobs:
           python - <<'PY'
           text = open("agents/openai.yaml", "r", encoding="utf-8").read()
           required = [
-              'display_name: "Memento Skill"',
+              'display_name: "Memento"',
               'short_description:',
               'default_prompt:',
           ]

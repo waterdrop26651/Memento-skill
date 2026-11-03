@@ -1,4 +1,4 @@
 interface:
-  display_name: "Memento Skill"
+  display_name: "Memento"
   short_description: "Controlled recall for research memory and experiment tracking"
-  default_prompt: "Use $memento-skill to create or improve controlled research memory: an ANCHOR.md with the core question, method and main table, runs.csv, contrasts.csv, hypotheses.md, active evidence, archive recall, and the next highest-information contrast for the anchor."
+  default_prompt: "Use $memento to create or improve controlled research memory: an ANCHOR.md with the core question, method and main table, runs.csv, contrasts.csv, hypotheses.md, active evidence, archive recall, and the next highest-information contrast for the anchor."

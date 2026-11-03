@@ -1,5 +1,5 @@
 ---
-name: memento-skill
+name: memento
 description: Controlled recall and anchored direction for research agents. Use it for research memory, experiment tracking, evidence ledgers, hypothesis updates, archival recall, and picking the next high-information contrast. Use it also to keep an agent's experiments tied to the project's core question and method, with a main table as their metric. Use it whenever a long research project needs a tracker or a handoff, whenever the agent keeps drifting into side experiments or invented framings, and whenever the user has to correct the same thing twice or asks to converge, focus, or build a main table.
 license: MIT
 category: research-data-analysis
@@ -27,11 +27,11 @@ metadata:
     - experiments
 ---
 
-# Memento Skill
+# Memento
 
 ## Overview
 
-Memento Skill treats research memory as a controlled recall problem. External
+Memento treats research memory as a controlled recall problem. External
 records help an agent continue work across sessions, but they can also pollute
 the next decision if stale notes, weak evidence, or misleading summaries are
 read as current facts.
